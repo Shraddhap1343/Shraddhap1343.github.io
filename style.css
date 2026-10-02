@@ -1,0 +1,148 @@
+:root{
+  --bg:#F3F5F8; --panel:#FFFFFF; --ink:#0B1F3A; --muted:#4A5872;
+  --line:#D3DAE5; --accent:#14315C; --accent-ink:#FFFFFF; --tag:#E2E9F4;
+  --bar:#0B2545; --gold:#B8893B;
+  --display:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#09131F; --panel:#101F36; --ink:#E8EEF9; --muted:#9FADC6;
+    --line:#243452; --accent:#D4AF6A; --accent-ink:#09131F; --tag:#1C2E4E;
+    --bar:#060D17; --gold:#D4AF6A;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font:17px/1.65 var(--body)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+
+header.top{position:sticky;top:0;z-index:5;background:var(--bar);border-bottom:3px solid var(--gold);color:#fff}
+header.top :focus-visible{outline-color:var(--gold)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+.logo{font:800 20px var(--display);text-decoration:none}
+nav a{margin-left:22px;text-decoration:none;color:#C9D3E3;font-weight:500;font-size:15px}
+nav a:hover{color:var(--gold)}
+
+.hero{padding:88px 0 64px}
+.hero h1{font:800 clamp(44px,9vw,96px)/0.95 var(--display);letter-spacing:-0.03em}
+.hero p.role{margin-top:24px;font:500 clamp(20px,3vw,28px)/1.35 var(--display);color:var(--accent);max-width:30ch}
+.hero p.intro{margin-top:20px;max-width:58ch}
+.cta{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 22px;border-radius:8px;font-weight:600;text-decoration:none;border:2px solid var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{color:var(--accent)}
+.btn:hover{filter:brightness(1.08)}
+
+section{padding:56px 0;border-top:1px solid var(--line)}
+section h2{font:800 clamp(28px,5vw,40px)/1.1 var(--display);margin-bottom:28px;letter-spacing:-0.02em}
+section h2::after{content:"";display:block;width:56px;height:4px;background:var(--gold);margin-top:12px}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.skills h3{font:600 17px var(--body);margin-bottom:10px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{background:var(--tag);padding:4px 12px;border-radius:999px;font-size:14px;font-weight:500}
+
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.project{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px;display:flex;flex-direction:column}
+.project h3{font:800 24px var(--display);margin-bottom:8px}
+.project p{color:var(--muted);margin-bottom:14px}
+.project ul{margin:0 0 18px 18px;color:var(--muted);font-size:15px}
+.project .tags{margin-top:auto}
+.links{margin-top:18px;display:flex;gap:16px;font-weight:600;font-size:15px}
+.links a{color:var(--accent)}
+
+.timeline{border-left:3px solid var(--gold);padding-left:24px;display:grid;gap:32px}
+.item h3{font:600 19px var(--body)}
+.item .when{color:var(--muted);font-size:14px;margin-bottom:6px}
+.item p,.item li{color:var(--muted);font-size:16px}
+.item ul{margin-left:18px}
+
+.certs{list-style:none;display:grid;gap:12px}
+.certs li{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+.certs small{color:var(--muted);display:block}
+
+.contact p{max-width:52ch;margin-bottom:24px;color:var(--muted)}
+.contact .links{margin-top:20px;font-size:17px}
+footer{padding:32px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+
+.hero{display:grid;grid-template-columns:1fr minmax(220px,300px);gap:48px;align-items:center}
+.hero-photo{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:16px;border:3px solid var(--gold)}
+@media (max-width:760px){.hero{grid-template-columns:1fr;gap:32px}.hero-photo{max-width:260px;order:-1}}
+
+/* ---------- animations ---------- */
+.progress{position:fixed;top:0;left:0;height:4px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;z-index:10}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.92) rotate(-2deg)}to{opacity:1;transform:none}}
+@keyframes blink{50%{opacity:0}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero-text>*{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.hero-text>:nth-child(2){animation-delay:.12s}
+.hero-text>:nth-child(3){animation-delay:.24s}
+.hero-text>:nth-child(4){animation-delay:.36s}
+.hero-photo{animation:pop .9s cubic-bezier(.2,.7,.2,1) .2s both,float 6s ease-in-out 1.2s infinite}
+.hero p.role{min-height:2.8em}
+.caret{display:inline-block;width:3px;height:1em;background:var(--gold);margin-left:4px;vertical-align:-0.12em;animation:blink 1s steps(1) infinite}
+html.js .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+html.js .reveal.in{opacity:1;transform:none}
+section h2::after{transition:width .8s ease .2s}
+html.js section:not(.in) h2::after{width:0}
+.project{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.project:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(11,37,69,.18);border-color:var(--gold)}
+.tags span{transition:background .2s ease,color .2s ease,transform .2s ease}
+.tags span:hover{background:var(--accent);color:var(--accent-ink);transform:translateY(-2px)}
+.certs li{transition:transform .2s ease,border-color .2s ease}
+.certs li:hover{transform:translateX(6px);border-color:var(--gold)}
+.btn{transition:transform .2s ease,filter .2s ease}
+.btn:hover{transform:translateY(-2px)}
+nav a{position:relative;padding:4px 0}
+nav a::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+nav a:hover::after,nav a.active::after{transform:scaleX(1)}
+nav a.active{color:#fff}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html.js .reveal{opacity:1;transform:none}
+  html.js section:not(.in) h2::after{width:56px}
+}
+@media (max-width:560px){
+  nav a{margin-left:14px;font-size:14px}
+  .hero{padding:56px 0 40px}
+}
+
+/* ---------- mobile menu ---------- */
+.menu-toggle{display:none;background:none;border:2px solid #C9D3E3;color:#fff;border-radius:8px;padding:2px 12px;font-size:22px;line-height:1.4;cursor:pointer}
+@media (max-width:640px){
+  .menu-toggle{display:block}
+  header.top nav{position:absolute;top:100%;left:0;right:0;background:var(--bar);display:none;flex-direction:column;padding:8px 24px 16px;border-bottom:3px solid var(--gold)}
+  header.top nav.open{display:flex}
+  header.top nav a{margin:0;padding:12px 0;font-size:16px}
+  header.top nav a::after{bottom:6px}
+}
+
+
+/* ---------- about, stats, form ---------- */
+.about-text{max-width:62ch;color:var(--muted);margin-bottom:28px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
+.stat{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:12px;padding:20px}
+.stat b{display:block;font:800 40px/1 var(--display);color:var(--accent);margin-bottom:6px}
+.stat span{color:var(--muted);font-size:15px}
+.form{display:grid;gap:14px;max-width:520px;margin-bottom:24px}
+.form label{display:grid;gap:6px;font-weight:600;font-size:15px}
+.form input,.form textarea{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);width:100%}
+.form button{justify-self:start;cursor:pointer;font:inherit;font-weight:600}
+
+/* ---------- resume ---------- */
+.resume-cta{margin:0 0 24px}
+.resume-view{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;max-width:760px;box-shadow:0 10px 28px rgba(11,37,69,.12)}
+.resume-view img{display:block;width:100%;height:auto}
+
+/* ---------- buttons and full-size resume ---------- */
+button.btn{font:inherit;font-weight:600;cursor:pointer;background:transparent}
+#dlResume{display:none}
+.zoom{display:none;position:fixed;inset:0;z-index:20;background:rgba(6,13,23,.92);overflow:auto;padding:64px 16px 24px;text-align:center}
+.zoom.open{display:block}
+.zoom img{display:inline-block;width:100%;max-width:1000px;height:auto;background:#fff;border-radius:8px}
+.zoom-close{position:fixed;top:14px;right:18px;width:44px;height:44px;border-radius:50%;border:2px solid #fff;background:transparent;color:#fff;font-size:20px;cursor:pointer}
